@@ -10,21 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161216013031) do
+ActiveRecord::Schema.define(version: 20161216223530) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cars", force: :cascade do |t|
-    t.integer  "driver_id",               null: false
-    t.string   "make",                    null: false
-    t.string   "model",                   null: false
-    t.string   "year",                    null: false
-    t.string   "color",                   null: false
-    t.integer  "approved",    default: 0
-    t.integer  "default_car", default: 0
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.integer  "driver_id",                             null: false
+    t.string   "make",                                  null: false
+    t.string   "model",                                 null: false
+    t.string   "year",                                  null: false
+    t.string   "color",                                 null: false
+    t.integer  "approved",                  default: 0
+    t.integer  "default_car",               default: 0
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.string   "registration_file_name"
+    t.string   "registration_content_type"
+    t.integer  "registration_file_size"
+    t.datetime "registration_updated_at"
+    t.string   "insurance_file_name"
+    t.string   "insurance_content_type"
+    t.integer  "insurance_file_size"
+    t.datetime "insurance_updated_at"
   end
 
   create_table "credit_cards", force: :cascade do |t|
@@ -56,7 +64,7 @@ ActiveRecord::Schema.define(version: 20161216013031) do
     t.string   "password_digest",                            null: false
     t.string   "phone",                                      null: false
     t.string   "zipcode",                                    null: false
-    t.string   "type",                      default: "user"
+    t.string   "status",                    default: "user"
     t.integer  "active_driver",   limit: 2, default: 0
     t.datetime "created_at",                                 null: false
     t.datetime "updated_at",                                 null: false
