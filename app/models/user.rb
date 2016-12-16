@@ -14,10 +14,18 @@ class User < ApplicationRecord
   validates :first_name, :last_name, :email, :password_digest, :phone, :zipcode, presence: true
   validates :email, uniqueness: true
   validates :status, inclusion: { in: TYPES, message: "%{value} is not a valid type" }
+  validate :valid_phone
+  validate :valid_zipcode
 
-  before_validation :set_status, on: :create
+  def valid_phone
+    unless self.phone =~ /^\d{3}-\d{3}-\d{4}$/
+      errors.add :phone, "number must be valid"
+    end
+  end
 
-  def set_type
-    self.type ||= "user"
+  def valid_zipcode
+    unless self.zipcode =~ /^\d{5}$/
+      errors.add :zipcode, "must be valid"
+    end
   end
 end
