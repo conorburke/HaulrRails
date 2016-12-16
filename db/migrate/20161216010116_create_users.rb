@@ -7,7 +7,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string  :password_digest, null: false
       t.string  :phone, null: false
       t.string  :zipcode, null: false
-      t.string  :type, default: "user"
+      t.string  :status, default: "user"
       t.integer :active_driver, limit: 1, default: 0
 
       t.timestamps null: false
