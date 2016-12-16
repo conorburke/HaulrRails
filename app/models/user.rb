@@ -18,14 +18,32 @@ class User < ApplicationRecord
   validate :valid_zipcode
 
   def valid_phone
-    unless self.phone =~ /^\d{3}-\d{3}-\d{4}$/
+    unless self.phone =~ /^\d{3}-\d{3}-\d{4}$/ # Ex: "619-643-8612"
       errors.add :phone, "number must be valid"
     end
   end
 
   def valid_zipcode
-    unless self.zipcode =~ /^\d{5}$/
+    unless self.zipcode =~ /^\d{5}$/ # Ex: "91006"
       errors.add :zipcode, "must be valid"
     end
   end
+
+  # Behaviors:
+
+  # def valid_driver
+  #   !!(self.cars.find { |car| car.approved? })
+  # end
+
+  # def rider_rating
+  #   rating_count = self.rides.count
+  #   rating_sum = self.rides.reduce(0) { |ride, sum| sum += ride.rider_rating }
+  #   return rating_count == 0? 0 : (ratings_sum.to_f / rating_count).round(1)
+  # end
+
+  # def driver_rating
+  #   rating_count = self.drives.count
+  #   rating_sum = self.drives.reduce(0) { |drive, sum| sum += drive.driver_rating }
+  #   return rating_count == 0? 0 : (ratings_sum.to_f / rating_count).round(1)
+  # end
 end
