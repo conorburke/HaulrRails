@@ -16,15 +16,15 @@ ActiveRecord::Schema.define(version: 20161216013031) do
   enable_extension "plpgsql"
 
   create_table "cars", force: :cascade do |t|
-    t.integer  "driver_id",              null: false
-    t.string   "make",                   null: false
-    t.string   "model",                  null: false
-    t.string   "year",                   null: false
-    t.string   "color",                  null: false
-    t.integer  "valid",      default: 0
-    t.integer  "default",    default: 0
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "driver_id",               null: false
+    t.string   "make",                    null: false
+    t.string   "model",                   null: false
+    t.string   "year",                    null: false
+    t.string   "color",                   null: false
+    t.integer  "approved",    default: 0
+    t.integer  "default_car", default: 0
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "credit_cards", force: :cascade do |t|
@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(version: 20161216013031) do
     t.string   "card_name",                   null: false
     t.string   "expiration_date",             null: false
     t.string   "security_code",               null: false
-    t.integer  "valid",           default: 0
-    t.integer  "default",         default: 0
+    t.integer  "approved",        default: 0
+    t.integer  "default_card",    default: 0
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
