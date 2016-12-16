@@ -19,6 +19,19 @@ RSpec.describe Car, type: :model do
     it { expect(car.approved).to be >= 0}
     it { expect(car.default_car).to be >= 0}
   end
+  describe 'paperclip tests' do 
+    it { should have_attached_file(:registration) }
+    it { should have_attached_file(:insurance) }
+    it { should validate_attachment_content_type(:registration).
+                  allowing('image/png', 'image/gif').
+                  rejecting('text/plain', 'text/xml') }
+    it { should validate_attachment_content_type(:insurance).
+                  allowing('image/png', 'image/gif').
+                  rejecting('text/plain', 'text/xml') }
+    # it { should validate_attachment_presence(:registration) }
+    # it { should validate_attachment_size(:avatar).
+    #               less_than(2.megabytes) }
+  end
 
   # pending "add some examples to (or delete) #{__FILE__}"
 end
