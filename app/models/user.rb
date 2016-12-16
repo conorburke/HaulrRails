@@ -13,7 +13,7 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name, :email, :password_digest, :phone, :zipcode, presence: true
   validates :email, uniqueness: true
-  validates :status, inclusion: { in: TYPES, message: "%{value} is not a valid type" }
+  validates :status, inclusion: { in: TYPES, message: "%{value} is not a valid status" }
   validate :valid_phone
   validate :valid_zipcode
 
@@ -37,13 +37,13 @@ class User < ApplicationRecord
 
   # def rider_rating
   #   rating_count = self.rides.count
-  #   rating_sum = self.rides.reduce(0) { |ride, sum| sum += ride.rider_rating }
+  #   rating_sum = self.rides.reduce(0) { |ride, sum| sum += ride.rider_score }
   #   return rating_count == 0? 0 : (ratings_sum.to_f / rating_count).round(1)
   # end
 
   # def driver_rating
   #   rating_count = self.drives.count
-  #   rating_sum = self.drives.reduce(0) { |drive, sum| sum += drive.driver_rating }
+  #   rating_sum = self.drives.reduce(0) { |drive, sum| sum += drive.driver_score }
   #   return rating_count == 0? 0 : (ratings_sum.to_f / rating_count).round(1)
   # end
 end
