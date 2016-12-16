@@ -11,9 +11,10 @@ class User < ApplicationRecord
 
   TYPES = %w(user admin)
 
-  validates :first_name, :last_name, :email, :password_digest, :phone, :zipcode, presence: true
-  validates :email, uniqueness: true
-  validates :status, inclusion: { in: TYPES, message: "%{value} is not a valid status" }
+  validates :first_name, :last_name, :email, :password_digest, :phone, :zipcode, :status, :active_driver, presence: true
+  validates :email, uniqueness: { case_sensitive: false }
+  validates :status, inclusion: { in: TYPES, message: "%{value} is not a valid type" }
+
   validate :valid_phone
   validate :valid_zipcode
 
