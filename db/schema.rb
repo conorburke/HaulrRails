@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20161216013031) do
     t.string   "password_digest",                            null: false
     t.string   "phone",                                      null: false
     t.string   "zipcode",                                    null: false
-    t.string   "type",                      default: "user"
+    t.string   "status",                    default: "user"
     t.integer  "active_driver",   limit: 2, default: 0
     t.datetime "created_at",                                 null: false
     t.datetime "updated_at",                                 null: false
