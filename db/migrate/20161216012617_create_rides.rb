@@ -1,7 +1,7 @@
 class CreateRides < ActiveRecord::Migration[5.0]
   def change
     create_table :rides do |t|
-      t.string  :status, default: "waiting"
+      t.string  :status, default: "contacting"
       t.integer :rider_id, null: false
       t.integer :driver_id
       t.integer :rider_score
