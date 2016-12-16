@@ -11,13 +11,8 @@ class User < ApplicationRecord
 
   TYPES = %w(user admin)
 
-  validates :first_name, :last_name, :email, :password_digest, :phone, :zipcode, presence: true
+  validates :first_name, :last_name, :email, :password_digest, :phone, :zipcode, :status, :active_driver, presence: true
   validates :email, uniqueness: true
   validates :status, inclusion: { in: TYPES, message: "%{value} is not a valid type" }
 
-  before_validation :set_status, on: :create
-
-  def set_type
-    self.type ||= "user"
-  end
 end
