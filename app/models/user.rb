@@ -7,4 +7,17 @@ class User < ApplicationRecord
   has_secure_password
 
   # Validations:
+
+  TYPES = %w(user admin)
+
+  validates :first_name, :last_name, :email, :password_digest, :phone, :zipcode, presence: true
+  validates :email, uniqueness: true
+  validates :type, inclusion: { in: TYPES, message: "%{value} is not a valid type" }
+  validate :valid_phone
+  validate :valid_zipcode
+
+  def valid_phone
+
+  end
+
 end

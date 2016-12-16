@@ -6,7 +6,7 @@ class CreateCars < ActiveRecord::Migration[5.0]
       t.string  :model, null: false
       t.string  :year, null: false
       t.string  :color, null: false
-      t.integer :valid, default: 0
+      t.integer :approved, default: 0
       t.integer :default, default: 0
 
       t.timestamps null: false
