@@ -13,5 +13,4 @@ class CreditCard < ApplicationRecord
       errors.add :card_number, "must be formatted correctly"
     end
   end
-
 end

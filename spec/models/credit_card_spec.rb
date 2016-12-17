@@ -26,7 +26,7 @@ RSpec.describe CreditCard, type: :model do
     end
 
     it 'is an approved card' do
-      expect(creditcard).to have_attributes(approved: 0)
+      expect(creditcard).to have_attributes(approved: 1)
     end
 
     it 'is the default card' do

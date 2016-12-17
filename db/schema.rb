@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20161216223530) do
     t.string   "model",                                 null: false
     t.string   "year",                                  null: false
     t.string   "color",                                 null: false
-    t.integer  "approved",                  default: 0
+    t.integer  "approved",                  default: 1
     t.integer  "default_car",               default: 0
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
@@ -41,20 +41,20 @@ ActiveRecord::Schema.define(version: 20161216223530) do
     t.string   "card_name",                   null: false
     t.string   "expiration_date",             null: false
     t.string   "security_code",               null: false
-    t.integer  "approved",        default: 0
+    t.integer  "approved",        default: 1
     t.integer  "default_card",    default: 0
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
 
   create_table "rides", force: :cascade do |t|
-    t.string   "status",       default: "waiting"
-    t.integer  "rider_id",                         null: false
+    t.string   "status",       default: "contacting"
+    t.integer  "rider_id",                            null: false
     t.integer  "driver_id"
     t.integer  "rider_score"
     t.integer  "driver_score"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   create_table "users", force: :cascade do |t|
