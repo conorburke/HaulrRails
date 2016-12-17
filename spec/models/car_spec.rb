@@ -18,6 +18,16 @@ RSpec.describe Car, type: :model do
     it { expect(car.default_car).to be_kind_of(Integer)}
     it { expect(car.approved).to be >= 0}
     it { expect(car.default_car).to be >= 0}
+    it 'is INVALID if it sets default to unapproved car' do
+      invalid_car = Car.new(driver_id: driver.id, make: "Toyota", model: "Tacoma", year: "2007", color: "red", approved: 0, default_car: 1)
+      expect(invalid_car).to_not be_valid
+    end
+    it 'is INVALID if it sets multiple default cars' do
+      valid_car = car
+      valid_car.make_default
+      invalid_car = Car.new(driver_id: driver.id, make: "Toyota", model: "Tacoma", year: "2007", color: "red", default_car: 1)
+      expect(invalid_car).to_not be_valid
+    end
   end
   describe 'paperclip tests' do
     it { should have_attached_file(:registration) }
@@ -28,16 +38,6 @@ RSpec.describe Car, type: :model do
     it { should validate_attachment_content_type(:insurance).
                   allowing('image/png', 'image/gif').
                   rejecting('text/plain', 'text/xml') }
-    it 'is INVALID if it sets default to unapproved car' do
-      invalid_car = Car.new(driver_id: driver.id, make: "Toyota", model: "Tacoma", year: "2007", color: "red", default_car: 1)
-      expect(invalid_car).to_not be_valid
-    end
-    it 'is INVALID if it sets multiple default cars' do
-      valid_car = car
-      valid_car.make_default
-      invalid_car = Car.new(driver_id: driver.id, make: "Toyota", model: "Tacoma", year: "2007", color: "red", approved: 1, default_car: 1)
-      expect(invalid_car).to_not be_valid
-    end
     # it { should validate_attachment_presence(:registration) }
     # it { should validate_attachment_size(:avatar).
     #               less_than(2.megabytes) }
