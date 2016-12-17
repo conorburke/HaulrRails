@@ -1,11 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  let(:driver) {User.create(first_name: "Conor", last_name: "Burke", email: "cjburke89@gmail.com", password_digest: "1234", phone: "717-608-8969", zipcode: "92102", status: "user", active_driver: 1 )}
 
-  it { should have_many(:credit_cards) }
-  it { should have_many(:rides).with_foreign_key('rider_id') }
-  it { should have_many(:cars).with_foreign_key('driver_id') }
-  it { should have_many(:drives).class_name('Ride').with_foreign_key('driver_id') }
+  describe "associations" do
+    it { should have_many(:credit_cards) }
+    it { should have_many(:rides).with_foreign_key('rider_id') }
+    it { should have_many(:cars).with_foreign_key('driver_id') }
+    it { should have_many(:drives).class_name('Ride').with_foreign_key('driver_id') }
+    it 'has one default car' do
+      car = Car.create(driver_id: driver.id, make: "Toyota", model: "Tacoma", year: "2007", color: "red", approved: 1, default_car: 1)
+      expect(driver.default_car).to eq car
+    end
+  end
 
   describe "validations" do
     subject { User.new( first_name: 'Jane',

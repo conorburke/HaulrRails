@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :rides, foreign_key: :rider_id
 
   has_many :cars, foreign_key: :driver_id
+  has_one :default_car, -> { where default_car: 1 }, class_name: :Car, foreign_key: :driver_id
   has_many :drives, class_name: :Ride, foreign_key: :driver_id
 
   # Validations:
